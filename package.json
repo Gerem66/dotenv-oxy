@@ -1,0 +1,57 @@
+{
+  "name": "dotenv-oxy",
+  "version": "1.0.0",
+  "description": "Type-safe environment variable parser with validation and error handling",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "files": [
+    "src",
+    "dist",
+    "LICENSE",
+    "README.md",
+    "!**/__tests__/**",
+    "!**/*.test.*",
+    "!**/*.spec.*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "typecheck": "tsc --noEmit",
+    "build": "rm -rf dist && tsc",
+    "clean": "rm -rf dist node_modules",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "dotenv",
+    "environment",
+    "variables",
+    "config",
+    "typescript",
+    "validation",
+    "env"
+  ],
+  "author": "Gerem66 <contact@geremy.dev>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gerem66/dotenv-oxy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Gerem66/dotenv-oxy/issues"
+  },
+  "homepage": "https://github.com/Gerem66/dotenv-oxy#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "dotenv": "^17.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
