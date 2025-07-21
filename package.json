@@ -1,6 +1,6 @@
 {
   "name": "dotenv-oxy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Type-safe environment variable parser with validation and error handling",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -18,7 +18,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "typecheck": "tsc --noEmit",
-    "build": "rm -rf dist && tsc",
+    "build": "tsc",
     "clean": "rm -rf dist node_modules",
     "prepublishOnly": "npm run build"
   },
@@ -27,9 +27,14 @@
     "environment",
     "variables",
     "config",
+    "javascript",
     "typescript",
     "validation",
-    "env"
+    "env",
+    "environment variables",
+    "configuration",
+    "type-safe",
+    "error handling"
   ],
   "author": "Gerem66 <contact@geremy.dev>",
   "license": "ISC",

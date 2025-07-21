@@ -17,44 +17,27 @@ npm install dotenv-oxy
 
 ## Usage
 
+Practical example of using `Dotenv-oxy` to recover, validate and centralize environmental variables in applications based on Node.JS.
+
 ```typescript
-import { defineEnvVar } from 'dotenv-oxy';
+// src/env.ts
+import { getEnvVar } from 'dotenv-oxy';
 
-// String variables
-const dbHost = defineEnvVar('DB_HOST', 'string'); // Required by default
-const apiKey = defineEnvVar('API_KEY', 'string', false); // Optional
-
-// Number variables
-const port = defineEnvVar('PORT', 'number');
-const maxConnections = defineEnvVar('MAX_CONNECTIONS', 'number', false);
-
-// Boolean variables
-const enableLogging = defineEnvVar('ENABLE_LOGGING', 'boolean');
-const debugMode = defineEnvVar('DEBUG_MODE', 'boolean', false);
-
-// Enum variables
-const environment = defineEnvVar('NODE_ENV', 'enum', ['development', 'production', 'test'] as const);
-const logLevel = defineEnvVar('LOG_LEVEL', 'enum', ['debug', 'info', 'warn', 'error'] as const, false);
+export const env = {
+    ENVIRONMENT:    defineEnvVar('ENVIRONMENT', 'enum', ['prod', 'dev']),
+    DISCORD_TOKEN:  defineEnvVar('DISCORD_TOKEN', 'string'),
+    OPENAI_API_KEY: defineEnvVar('OPENAI_API_KEY', 'string', false),
+    PORT:           defineEnvVar('PORT', 'number', false) || 3000
+};
 ```
 
-## API
+### Explanation
 
-### `defineEnvVar(name, type, required?)`
-
-Parse and validate an environment variable.
-
-#### Parameters
-
-- `name`: The environment variable name
-- `type`: The expected type (`'string'`, `'number'`, `'boolean'`, `'enum'`)
-- `required`: Whether the variable is required (default: `true`)
-
-For enum types, pass the allowed values as the third parameter and required as the fourth.
-
-#### Returns
-
-The parsed value with the correct TypeScript type, or `undefined` if optional and not set.
+- `ENVIRONMENT` is an **string (enum)** variable that can only be `prod` or `dev`, otherwise an error will be thrown **at runtime**.
+- `DISCORD_TOKEN` is a **required string** variable, if not set an error will be thrown.
+- `OPENAI_API_KEY` is an **optional string** variable, if not set it will return `undefined` without throwing an error.
+- `PORT` is an **optional number** variable, if not set it will **default** to `3000`. If set to a non-numeric value, an error will be thrown.
 
 ## License
 
-ISC
+[ISC](./LICENSE)

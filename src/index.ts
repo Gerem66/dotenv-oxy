@@ -33,25 +33,25 @@ function parseNumber(value: string): number {
 }
 
 // string
-export function defineEnvVar(name: string, type: 'string', required?: true): string;
-export function defineEnvVar(name: string, type: 'string', required: false): string | undefined;
+export function getEnvVar(name: string, type: 'string', required?: true): string;
+export function getEnvVar(name: string, type: 'string', required: false): string | undefined;
 
 // number
-export function defineEnvVar(name: string, type: 'number', required?: true): number;
-export function defineEnvVar(name: string, type: 'number', required: false): number | undefined;
+export function getEnvVar(name: string, type: 'number', required?: true): number;
+export function getEnvVar(name: string, type: 'number', required: false): number | undefined;
 
 // boolean
-export function defineEnvVar(name: string, type: 'boolean', required?: true): boolean;
-export function defineEnvVar(name: string, type: 'boolean', required: false): boolean | undefined;
+export function getEnvVar(name: string, type: 'boolean', required?: true): boolean;
+export function getEnvVar(name: string, type: 'boolean', required: false): boolean | undefined;
 
 // enum
-export function defineEnvVar<T extends string>(
+export function getEnvVar<T extends string>(
     name: string,
     type: 'enum',
     enumValues: readonly T[],
     required?: true
 ): T;
-export function defineEnvVar<T extends string>(
+export function getEnvVar<T extends string>(
     name: string,
     type: 'enum',
     enumValues: readonly T[],
@@ -59,7 +59,7 @@ export function defineEnvVar<T extends string>(
 ): T | undefined;
 
 // Implementation
-export function defineEnvVar<T extends EnvVarValue>(
+export function getEnvVar<T extends EnvVarValue>(
     name: string,
     type: EnvVarType,
     enumValuesOrRequired?: readonly string[] | boolean,
@@ -79,8 +79,7 @@ export function defineEnvVar<T extends EnvVarValue>(
     // Handle undefined/empty values
     if (!value) {
         if (required) {
-            console.error(`Missing required environment variable: ${name}`);
-            process.exit(1);
+            throw new EnvironmentError(`Missing required environment variable: ${name}`);
         }
         return undefined;
     }
@@ -105,7 +104,6 @@ export function defineEnvVar<T extends EnvVarValue>(
                 throw new EnvironmentError(`Unknown type "${type}" for environment variable ${name}`);
         }
     } catch {
-        console.error(`Error processing environment variable "${name}" with value "${value}"`);
-        process.exit(1);
+        throw new EnvironmentError(`Error processing environment variable "${name}" with value "${value}"`);
     }
 }
