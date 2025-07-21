@@ -65,6 +65,11 @@ export function defineEnvVar<T extends EnvVarValue>(
     enumValuesOrRequired?: readonly string[] | boolean,
     requiredOrUndefined?: boolean
 ): T | undefined {
+    // Validate the variable name
+    if (!name || typeof name !== 'string' || name.trim() === '') {
+        throw new EnvironmentError(`Invalid environment variable name: "${name}". Variable name must be a non-empty string.`);
+    }
+
     // Determine if the variable is required
     const required = type === 'enum' ? (requiredOrUndefined ?? true) : (enumValuesOrRequired ?? true);
 
