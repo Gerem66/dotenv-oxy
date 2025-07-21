@@ -4,6 +4,9 @@
     "lib": [
       "es2018"
     ],
+    "types": [
+      "node"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
