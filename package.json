@@ -1,6 +1,6 @@
 {
   "name": "dotenv-oxy",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Type-safe environment variable parser with validation and error handling",
   "main": "dist/index.js",
   "module": "dist/index.js",

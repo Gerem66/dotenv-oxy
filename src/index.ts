@@ -103,7 +103,13 @@ export function getEnvVar<T extends EnvVarValue>(
             default:
                 throw new EnvironmentError(`Unknown type "${type}" for environment variable ${name}`);
         }
-    } catch {
+    } catch (error) {
+        // Re-throw EnvironmentError as-is (preserves detailed messages for enums, booleans, etc.)
+        if (error instanceof EnvironmentError) {
+            throw error;
+        }
+
+        // Catch any other unexpected errors
         throw new EnvironmentError(`Error processing environment variable "${name}" with value "${value}"`);
     }
 }

@@ -20,15 +20,27 @@ npm install dotenv-oxy
 Practical example of using `Dotenv-oxy` to recover, validate and centralize environmental variables in applications based on Node.JS.
 
 ```typescript
-// src/env.ts
+// env.ts
+
 import { getEnvVar } from 'dotenv-oxy';
 
 export const env = {
-    ENVIRONMENT:    defineEnvVar('ENVIRONMENT', 'enum', ['prod', 'dev']),
-    DISCORD_TOKEN:  defineEnvVar('DISCORD_TOKEN', 'string'),
-    OPENAI_API_KEY: defineEnvVar('OPENAI_API_KEY', 'string', false),
-    PORT:           defineEnvVar('PORT', 'number', false) || 3000
+    ENVIRONMENT:    getEnvVar('ENVIRONMENT', 'enum', ['prod', 'dev']),
+    DISCORD_TOKEN:  getEnvVar('DISCORD_TOKEN', 'string'),
+    OPENAI_API_KEY: getEnvVar('OPENAI_API_KEY', 'string', false),
+    PORT:           getEnvVar('PORT', 'number', false) || 3000
 };
+```
+
+```typescript
+// index.ts
+
+import { env } from './env';
+
+env.ENVIRONMENT     // 'prod' | 'dev'
+env.DISCORD_TOKEN   // string
+env.OPENAI_API_KEY  // string | undefined
+env.PORT            // number
 ```
 
 ### Explanation
