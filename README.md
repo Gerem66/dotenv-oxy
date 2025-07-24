@@ -1,6 +1,6 @@
 # dotenv-oxy | Node.js Environment Variable Parser
 
-Type-safe environment variable parser with validation and error handling for Node.js applications.
+Type-safe environment variable parser with validation and error handling for Node.js and React Native applications.
 
 ## Features
 
@@ -8,12 +8,18 @@ Type-safe environment variable parser with validation and error handling for Nod
 - **Validation**: Built-in validation for string, number, boolean, and enum types
 - **Error Handling**: Graceful error handling with descriptive messages
 - **Lightweight**: Only requires `dotenv` as a peer dependency
+- **Cross-Platform**: Works with Node.js and React Native
 
 ## Installation
 
 ```bash
 npm install dotenv-oxy
 ```
+
+### Additional dependencies:
+
+- Node.js: `npm install dotenv`
+- React Native: `npm install react-native-config`
 
 ## Usage
 
@@ -22,8 +28,13 @@ Practical example of using `Dotenv-oxy` to recover, validate and centralize envi
 ```typescript
 // env.ts
 
+// Node.js
 import { getEnvVar } from 'dotenv-oxy';
 
+// React Native
+import { getEnvVar } from 'dotenv-oxy/react-native';
+
+// Environment variable declaration
 export const env = {
     ENVIRONMENT:    getEnvVar('ENVIRONMENT', 'enum', ['prod', 'dev']),
     DISCORD_TOKEN:  getEnvVar('DISCORD_TOKEN', 'string'),

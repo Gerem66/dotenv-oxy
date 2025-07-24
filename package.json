@@ -1,19 +1,33 @@
 {
   "name": "dotenv-oxy",
-  "version": "1.0.3",
-  "description": "Type-safe environment variable parser with validation and error handling",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "source": "src/index.ts",
+  "version": "1.0.4",
+  "description": "Type-safe environment variable parser with validation and error handling for Node.js and React Native",
+  "main": "dist/node.js",
+  "module": "dist/node.js",
+  "types": "dist/node.d.ts",
+  "source": "src/node.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/node.d.ts",
+      "import": "./dist/node.js",
+      "require": "./dist/node.js"
+    },
+    "./node": {
+      "types": "./dist/node.d.ts",
+      "import": "./dist/node.js",
+      "require": "./dist/node.js"
+    },
+    "./react-native": {
+      "types": "./dist/react-native.d.ts",
+      "import": "./dist/react-native.js",
+      "require": "./dist/react-native.js"
+    }
+  },
   "files": [
     "src",
     "dist",
     "LICENSE",
-    "README.md",
-    "!**/__tests__/**",
-    "!**/*.test.*",
-    "!**/*.spec.*"
+    "README.md"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
@@ -31,6 +45,8 @@
     "typescript",
     "validation",
     "env",
+    "react-native",
+    "node",
     "environment variables",
     "configuration",
     "type-safe",
@@ -49,12 +65,22 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "dependencies": {
-    "dotenv": "^17.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "typescript": "^5.8.3",
     "@types/node": "^20.0.0"
+  },
+  "peerDependencies": {
+    "dotenv": "^17.0.0",
+    "react-native-config": "^1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "dotenv": {
+      "optional": true
+    },
+    "react-native-config": {
+      "optional": true
+    }
   },
   "engines": {
     "node": ">=16.0.0"
